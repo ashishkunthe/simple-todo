@@ -48,7 +48,7 @@ function TaskAdded() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200 text-gray-800 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-gray-800 via-gray-900 to-black text-gray-100 p-4">
       {/* Styled Back Button */}
       <div
         onClick={handler}
@@ -57,25 +57,55 @@ function TaskAdded() {
         &#8592; Back
       </div>
 
-      <h1 className="text-4xl font-bold mb-6">Your Added Tasks</h1>
+      <h1 className="text-4xl font-bold mb-6 text-white drop-shadow-lg">
+        Your Added Tasks
+      </h1>
       <div className="space-y-4 w-full max-w-lg">
         {tasks.length === 0 ? (
-          <p className="text-xl text-gray-600 text-center">
+          <p className="text-xl text-gray-400 text-center">
             No tasks added yet!
           </p>
         ) : (
           tasks.map((task, index) => (
             <div
               key={index}
-              className="flex flex-col sm:flex-row justify-between bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+              className="flex flex-col sm:flex-row justify-between bg-gray-700 p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
             >
-              {/* Task Completion Checkbox */}
-              <input
-                type="checkbox"
-                checked={completedTasks.includes(task)} // Check if the task is completed
-                onChange={() => handleCheckboxChange(task)} // Toggle completion status
-                className="mr-4"
-              />
+              {/* Custom Styled Task Completion Checkbox */}
+              <label className="relative inline-block">
+                <input
+                  type="checkbox"
+                  checked={completedTasks.includes(task)} // Check if the task is completed
+                  onChange={() => handleCheckboxChange(task)} // Toggle completion status
+                  className="opacity-0 absolute inset-0 cursor-pointer"
+                />
+                <span
+                  className={`w-6 h-6 border-2 rounded-full flex items-center justify-center 
+                    ${
+                      completedTasks.includes(task)
+                        ? "bg-green-500 border-green-500"
+                        : "bg-gray-700 border-gray-500"
+                    } 
+                    transition-all duration-300 hover:scale-105`}
+                >
+                  {completedTasks.includes(task) && (
+                    <svg
+                      className="w-4 h-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </span>
+              </label>
 
               {/* Task Text or Edit Form */}
               {isEditing === task ? (
@@ -83,14 +113,14 @@ function TaskAdded() {
                   type="text"
                   value={editValue}
                   onChange={handleEditChange}
-                  className="px-4 py-2 border border-gray-300 rounded-lg"
+                  className="px-4 py-2 border border-gray-500 rounded-lg bg-gray-800 text-white"
                 />
               ) : (
                 <h2
                   className={`text-xl font-semibold px-4 py-2 ${
                     completedTasks.includes(task)
                       ? "line-through text-gray-500"
-                      : ""
+                      : "text-white"
                   }`}
                 >
                   {task}

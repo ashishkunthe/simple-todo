@@ -18,12 +18,16 @@ function TaskPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-400 text-gray-800 p-4">
-      <h1 className="text-4xl font-bold mb-4">Task Page</h1>
-      <p className="text-lg mb-4 text-center">Manage your tasks efficiently!</p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100 p-6">
+      <h1 className="text-5xl font-extrabold mb-4 text-center text-gray-200">
+        Task Manager
+      </h1>
+      <p className="text-lg mb-8 text-center text-gray-400">
+        Manage your tasks with ease!
+      </p>
 
       <form
-        className="flex flex-col sm:flex-row sm:space-x-3 w-full max-w-lg"
+        className="flex flex-col sm:flex-row sm:space-x-4 w-full max-w-xl"
         onSubmit={taskSubmitHandler}
       >
         <input
@@ -31,20 +35,20 @@ function TaskPage() {
           placeholder="Enter a task..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="px-4 py-2 w-full sm:w-80 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+          className="px-4 py-2 w-full sm:w-80 border border-gray-700 bg-gray-800 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
         <button
           type="submit"
-          className="px-6 py-2 mt-3 sm:mt-0 bg-gray-500 text-gray-200 font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-all w-full sm:w-auto"
+          className="px-6 py-2 mt-4 sm:mt-0 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition-all w-full sm:w-auto"
         >
-          Submit
+          Add Task
         </button>
       </form>
 
-      {/* Styled Button (similar to the Submit button) */}
-      <Link to="/added-tasks">
-        <button className="px-6 py-2 mt-4 bg-gray-500 text-gray-200 font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-all w-full sm:w-auto">
-          Go to Added Tasks
+      {/* Styled Button for Navigation */}
+      <Link to="/added-tasks" className="mt-6">
+        <button className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition-all w-full sm:w-auto">
+          View Added Tasks
         </button>
       </Link>
     </div>
