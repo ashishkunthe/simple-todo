@@ -141,6 +141,7 @@ function TaskAdded() {
                   <button
                     onClick={() => handleEditClick(task)} // Trigger editing mode
                     className="ml-4 bg-yellow-500 text-white rounded-lg px-4 py-2 hover:bg-yellow-600 transition-all"
+                    disabled={completedTasks.includes(task)}
                   >
                     Edit
                   </button>
